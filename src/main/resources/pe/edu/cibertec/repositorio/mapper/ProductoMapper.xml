@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.edu.cibertec.repositorio.mapper.ProductoMapper">
+    <resultMap id="Producto" type="pe.edu.cibertec.dominio.Producto">
+        <id column="id" property="id" />
+        <result column="nombre" property="nombre" />
+        <result column="descripcion" property="descripcion" />
+        <result column="precio" property="precio" />
+<!--        <result imagen-->
+        <association property="categoria"
+                     javaType="pe.edu.cibertec.dominio.Categoria">
+            <id column="codigo_Categoria" property="id" />
+            <result column="nombreCategoria" property="nombre" />
+        </association>
+    </resultMap>
+
+    <select id="selectProducto" resultMap="Producto">
+        select
+          p.id, p.nombre, p.descripcion, p.precio,
+          c.id AS codigo_Categoria,
+          c.nombre AS nombreCategoria
+        from tab_producto p
+          inner join categoria c on c.id = p.id_categoria
+        where p.id = #{id}
+    </select>
+
+    <insert id="insertProducto" parameterType="pe.edu.cibertec.dominio.Producto"
+            useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO tab_producto (nombre, descripcion, precio, imagen, id_categoria)
+        VALUES (#{nombre}, #{descripcion}, #{precio}, #{imagen}, #{categoria.id})
+    </insert>
+
+    <select id="selectProductoTop" resultMap="Producto"
+            parameterType="BusquedaProductoTop">
+       select
+        pr.id,
+        pr.nombre,
+        descripcion,
+        precio,
+        imagen,
+        ca.id AS codigo_Categoria,
+        ca.nombre AS nombreCategoria
+       from tab_producto pr
+         inner join categoria ca on pr.id_categoria = ca.id
+       where pr.id in (
+       select distinct p.id
+       from tab_producto p
+        inner join detalle_carrito dc on dc.id_producto = p.id
+        inner join carrito c on c.id = dc.id_carrito
+       where
+         TIMESTAMPDIFF(MONTH, date(fecha_compra), curdate()) >= #{cantidadMeses}
+        <if test="idCategoria != null and idCategoria > 0">
+         and p.id_categoria = #{idCategoria}
+        </if>
+       )
+    </select>
+
+    <select id="procedureProductoTop" resultMap="Producto"
+            parameterType="BusquedaProductoTop">
+        { call productosTop( #{cantidadMeses}, #{idCategoria} ) }
+    </select>
+</mapper>
