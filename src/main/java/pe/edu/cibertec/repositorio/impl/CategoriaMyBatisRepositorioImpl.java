@@ -18,12 +18,12 @@ import pe.edu.cibertec.repositorio.mapper.CategoriaMapper;
  * @author Java-LM
  */
 @Repository
-public class MybatisCategoriaRepositorioImpl implements CategoriaRepositorio{
+public class CategoriaMyBatisRepositorioImpl implements CategoriaRepositorio{
 
     private CategoriaMapper categoriaMapper;
     
     @Autowired
-    public MybatisCategoriaRepositorioImpl(SqlSession session) {
+    public CategoriaMyBatisRepositorioImpl(SqlSession session) {
         categoriaMapper = session.getMapper(CategoriaMapper.class);
     }
     

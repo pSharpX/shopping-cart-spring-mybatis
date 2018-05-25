@@ -5,10 +5,13 @@
  */
 package pe.edu.cibertec.converter;
 
+import pe.edu.cibertec.dominio.Usuario;
+import pe.edu.cibertec.dto.UsuarioDto;
+
 /**
  *
  * @author Java-LM
  */
-public interface UsuarioConverter {
+public interface UsuarioConverter extends ConverterBase<Usuario, UsuarioDto> {
     
 }

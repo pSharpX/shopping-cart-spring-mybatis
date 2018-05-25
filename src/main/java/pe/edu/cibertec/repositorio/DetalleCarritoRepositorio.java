@@ -6,6 +6,7 @@
 package pe.edu.cibertec.repositorio;
 
 import pe.edu.cibertec.dominio.DetalleCarrito;
+import pe.edu.cibertec.repositorio.base.RepositorioBase;
 
 /**
  *

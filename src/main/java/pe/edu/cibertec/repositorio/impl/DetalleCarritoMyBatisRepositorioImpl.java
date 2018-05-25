@@ -18,12 +18,12 @@ import pe.edu.cibertec.repositorio.mapper.DetalleCarritoMapper;
  * @author Java-LM
  */
 @Repository
-public class MybatisDetalleCarritoRepositorioImpl implements CarritoRepositorio{
+public class DetalleCarritoMyBatisRepositorioImpl implements CarritoRepositorio{
     
     private DetalleCarritoMapper detalleCarritoMapper;
     
     @Autowired
-    public MybatisDetalleCarritoRepositorioImpl(SqlSession session) {
+    public DetalleCarritoMyBatisRepositorioImpl(SqlSession session) {
         detalleCarritoMapper = session.getMapper(DetalleCarritoMapper.class);
     }
     

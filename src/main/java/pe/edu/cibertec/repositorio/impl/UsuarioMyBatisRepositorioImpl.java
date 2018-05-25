@@ -9,12 +9,12 @@ import pe.edu.cibertec.repositorio.UsuarioRepositorio;
 import pe.edu.cibertec.repositorio.mapper.UsuarioMapper;
 
 @Repository
-public class MybatisUsuarioRepositorioImpl implements UsuarioRepositorio {
+public class UsuarioMyBatisRepositorioImpl implements UsuarioRepositorio {
 
     private UsuarioMapper usuarioMapper;
     
     @Autowired
-    public MybatisUsuarioRepositorioImpl(SqlSession session) {
+    public UsuarioMyBatisRepositorioImpl(SqlSession session) {
         usuarioMapper = session.getMapper(UsuarioMapper.class);
     }
 

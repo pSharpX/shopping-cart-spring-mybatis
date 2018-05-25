@@ -1,26 +1,19 @@
 package pe.edu.cibertec.dominio;
 
+import pe.edu.cibertec.dominio.base.EntidadBase;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
-public class Usuario implements Serializable {
+public class Usuario extends EntidadBase {
 
-    private Long id;
     private String nombre;
     private String apellido;
     private Date fechaNacimiento;
     private transient Integer edad;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getNombre() {
         return nombre;

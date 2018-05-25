@@ -6,11 +6,12 @@
 package pe.edu.cibertec.repositorio;
 
 import pe.edu.cibertec.dominio.Categoria;
+import pe.edu.cibertec.repositorio.base.RepositorioBase;
 
 /**
  *
  * @author Java-LM
  */
-public interface CategoriaRepositorio extends RepositorioBase<Categoria>{
+public interface CategoriaRepositorio extends RepositorioBase<Categoria> {
     
 }

@@ -6,18 +6,14 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
-import pe.edu.cibertec.dominio.Categoria;
 import pe.edu.cibertec.dominio.Producto;
 import pe.edu.cibertec.dominio.Usuario;
 import pe.edu.cibertec.dominio.busqueda.BusquedaProductoTop;
@@ -27,7 +23,7 @@ import pe.edu.cibertec.repositorio.UsuarioRepositorio;
 
 @ComponentScan("pe.edu.cibertec")
 @PropertySource("classpath:database.properties")
-public class PrincipalMybatis {
+public class Principal {
 
     public static SqlSessionFactory createSqlSessionFactory() {
         try {
@@ -45,7 +41,7 @@ public class PrincipalMybatis {
     }
 
     public static void main(String[] args) {
-        ApplicationContext ctx = new AnnotationConfigApplicationContext(PrincipalMybatis.class);
+        ApplicationContext ctx = new AnnotationConfigApplicationContext(Principal.class);
         SqlSessionFactory sqlSessionFactory = ctx.getBean(SqlSessionFactory.class);
 
         // FORMA Default

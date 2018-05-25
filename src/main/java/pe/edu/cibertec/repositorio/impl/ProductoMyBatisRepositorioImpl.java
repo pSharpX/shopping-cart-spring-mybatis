@@ -10,13 +10,13 @@ import pe.edu.cibertec.repositorio.ProductoRepositorio;
 import pe.edu.cibertec.repositorio.mapper.ProductoMapper;
 
 @Repository
-public class MybatisProductoRepositorioImpl
+public class ProductoMyBatisRepositorioImpl
     implements ProductoRepositorio {
 
     private ProductoMapper productoMapper;
 
     @Autowired
-    public MybatisProductoRepositorioImpl(SqlSession session) {
+    public ProductoMyBatisRepositorioImpl(SqlSession session) {
         productoMapper = session.getMapper(ProductoMapper.class);
     }
 
