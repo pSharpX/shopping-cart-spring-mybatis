@@ -12,11 +12,17 @@ import pe.edu.cibertec.util.Converter;
 public class CategoriaDefaultConverterImpl implements CategoriaConverter {
     @Override
     public CategoriaDto map(Categoria object) {
-        return null;
+        CategoriaDto categoriaDto = new CategoriaDto();
+        categoriaDto.setId(object.getId());
+        categoriaDto.setNombre(object.getNombre());
+        return categoriaDto;
     }
 
     @Override
     public Categoria map(CategoriaDto object) {
-        return null;
+        Categoria categoria = new Categoria();
+        categoria.setId(object.getId());
+        categoria.setNombre(object.getNombre());
+        return categoria;
     }
 }

@@ -5,6 +5,8 @@ import pe.edu.cibertec.dominio.DetalleCarrito;
 import pe.edu.cibertec.dto.DetalleCarritoDto;
 import pe.edu.cibertec.util.Converter;
 
+import java.math.BigDecimal;
+
 /**
  * Created by CHRISTIAN on 24/05/2018.
  */
@@ -12,11 +14,22 @@ import pe.edu.cibertec.util.Converter;
 public class DetalleCarritoDefaultConverterImpl implements DetalleCarritoConverter {
     @Override
     public DetalleCarritoDto map(DetalleCarrito object) {
-        return null;
+        DetalleCarritoDto detalleCarritoDto = new DetalleCarritoDto();
+        detalleCarritoDto.setId(object.getId());
+        detalleCarritoDto.setProductoId(object.getProducto().getId());
+        detalleCarritoDto.setProducto(object.getProducto().getNombre());
+        detalleCarritoDto.setCategoria(object.getProducto().getCategoria().getNombre());
+        detalleCarritoDto.setCantidad(object.getCantidad());
+        detalleCarritoDto.setPrecioUnitario(object.getPrecioUnitario().doubleValue());
+        return detalleCarritoDto;
     }
 
     @Override
     public DetalleCarrito map(DetalleCarritoDto object) {
-        return null;
+        DetalleCarrito detalleCarrito = new DetalleCarrito();
+        detalleCarrito.setId(object.getId());
+        detalleCarrito.setCantidad(object.getCantidad());
+        detalleCarrito.setPrecioUnitario(new BigDecimal(object.getPrecioUnitario()));
+        return detalleCarrito;
     }
 }

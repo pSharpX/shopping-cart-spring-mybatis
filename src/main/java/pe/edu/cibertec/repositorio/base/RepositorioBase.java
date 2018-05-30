@@ -5,13 +5,15 @@
  */
 package pe.edu.cibertec.repositorio.base;
 
+import pe.edu.cibertec.dominio.base.EntidadBase;
+
 import java.util.List;
 
 /**
  *
  * @author Java-LM
  */
-public interface RepositorioBase<T> {
+public interface RepositorioBase<T extends EntidadBase> {
     T buscar(Long id);
     List<T> obtenerTodos();
     void crear(T object);

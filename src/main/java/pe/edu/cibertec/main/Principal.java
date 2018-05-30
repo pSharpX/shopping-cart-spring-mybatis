@@ -17,9 +17,14 @@ import org.springframework.context.annotation.PropertySource;
 import pe.edu.cibertec.dominio.Producto;
 import pe.edu.cibertec.dominio.Usuario;
 import pe.edu.cibertec.dominio.busqueda.BusquedaProductoTop;
+import pe.edu.cibertec.dto.ProductoDto;
+import pe.edu.cibertec.dto.UsuarioDto;
 import pe.edu.cibertec.repositorio.CategoriaRepositorio;
 import pe.edu.cibertec.repositorio.ProductoRepositorio;
 import pe.edu.cibertec.repositorio.UsuarioRepositorio;
+import pe.edu.cibertec.servicio.CategoriaServicio;
+import pe.edu.cibertec.servicio.ProductoServicio;
+import pe.edu.cibertec.servicio.UsuarioServicio;
 
 @ComponentScan("pe.edu.cibertec")
 @PropertySource("classpath:database.properties")
@@ -47,12 +52,13 @@ public class Principal {
         // FORMA Default
         // SqlSessionFactory sqlSessionFactory = createSqlSessionFactory
         // try (SqlSession sqlSession = sqlSessionFactory.openSession()) {}
+
         // FORMA 1
         // SqlSessionFactory sqlSessionFactory = ctx.getBean(SqlSessionFactory.class);
         // try (SqlSession sqlSession = sqlSessionFactory.openSession()) {}
-        UsuarioRepositorio usuarioRepositorio = ctx.getBean(UsuarioRepositorio.class);
-        ProductoRepositorio productoRepositorio = ctx.getBean(ProductoRepositorio.class);
-        CategoriaRepositorio categoriaRepositorio = ctx.getBean(CategoriaRepositorio.class);
+        UsuarioServicio usuarioServicio = ctx.getBean(UsuarioServicio.class);
+        ProductoServicio productoServicio = ctx.getBean(ProductoServicio.class);
+        CategoriaServicio categoriaServicio = ctx.getBean(CategoriaServicio.class);
 
 //            Usuario nuevoUsuario = new Usuario();
 //            nuevoUsuario.setNombre("María");
@@ -70,17 +76,17 @@ public class Principal {
 //                    "pe.edu.cibertec.repositorio.mapper.UsuarioMapper.updateUsuario",
 //                    usuario);
 //            System.out.println(usuario.getNombre() + " " + usuario.getApellido());
-        List<Usuario> usuarios = usuarioRepositorio.obtenerTodos();
+        List<UsuarioDto> usuarios = usuarioServicio.obtenerTodos();
         usuarios.forEach(System.out::println);
 
         System.out.println("-----------------------------------------------------------------");
-        Producto producto = productoRepositorio.buscar(1L);
+        ProductoDto producto = productoServicio.buscar(1L);
         System.out.println(producto.toString());
 
-        BusquedaProductoTop busquedaProductoTop = new BusquedaProductoTop();
-        busquedaProductoTop.setIdCategoria(1);
-        List<Producto> productosTop = productoRepositorio.obtenerProductosTop(busquedaProductoTop);
-        productosTop.forEach(System.out::println);
+        //BusquedaProductoTop busquedaProductoTop = new BusquedaProductoTop();
+        //busquedaProductoTop.setIdCategoria(1);
+        //List<ProductoDto> productosTop = productoServicio.obtenerProductosTop(busquedaProductoTop);
+        //productosTop.forEach(System.out::println);
 //
 //            sqlSession.delete(
 //                    "pe.edu.cibertec.repositorio.mapper.UsuarioMapper.deleteUsuario",
@@ -96,7 +102,7 @@ public class Principal {
 //            int indice = productoRepositorio.crear(nuevo);
 //            System.out.println("Filas modificadas: " + indice);
 //            System.out.println("Queremos el índice! " + nuevo.getId());
-        categoriaRepositorio.obtenerTodos().forEach(System.out::println);
+        categoriaServicio.obtenerTodos().forEach(System.out::println);
     }
 
     private static final String RUTA_IMAGEN = "C:\\Luiggi\\reloj_cuarzo.jpg";

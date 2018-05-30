@@ -29,27 +29,27 @@ public class CategoriaMyBatisRepositorioImpl implements CategoriaRepositorio{
     
     @Override
     public Categoria buscar(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return categoriaMapper.selectCategoria(id);
     }
 
     @Override
     public List<Categoria> obtenerTodos() {
-        return categoriaMapper.obtenerTodos();
+        return categoriaMapper.selectAllCategoria();
     }
 
     @Override
     public void crear(Categoria object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        categoriaMapper.insertCategoria(object);
     }
 
     @Override
     public void actualizar(Categoria object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        categoriaMapper.updateCategoria(object);
     }
 
     @Override
     public void eliminar(Categoria object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        categoriaMapper.deleteCategoria(object.getId());
     }
     
 }

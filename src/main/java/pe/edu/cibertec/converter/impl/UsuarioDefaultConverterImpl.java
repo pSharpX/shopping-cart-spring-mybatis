@@ -18,11 +18,22 @@ import pe.edu.cibertec.util.Converter;
 public class UsuarioDefaultConverterImpl implements UsuarioConverter {
     @Override
     public UsuarioDto map(Usuario object) {
-        return null;
+        UsuarioDto usuarioDto = new UsuarioDto();
+        usuarioDto.setId(object.getId());
+        usuarioDto.setNombre(object.getNombre());
+        usuarioDto.setApellido(object.getApellido());
+        //usuarioDto.setFechaNacimiento(object.getFechaNacimiento());
+        //usuarioDto.setEdad(object.getEdad());
+        return usuarioDto;
     }
 
     @Override
     public Usuario map(UsuarioDto object) {
-        return null;
+        Usuario usuario = new Usuario();
+        usuario.setId(object.getId());
+        usuario.setNombre(object.getNombre());
+        usuario.setApellido(object.getApellido());
+        usuario.setFechaNacimiento(object.getFechaNacimiento());
+        return usuario;
     }
 }

@@ -10,7 +10,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import pe.edu.cibertec.dominio.Carrito;
+import pe.edu.cibertec.dominio.DetalleCarrito;
 import pe.edu.cibertec.repositorio.CarritoRepositorio;
+import pe.edu.cibertec.repositorio.DetalleCarritoRepositorio;
 import pe.edu.cibertec.repositorio.mapper.DetalleCarritoMapper;
 
 /**
@@ -18,42 +20,37 @@ import pe.edu.cibertec.repositorio.mapper.DetalleCarritoMapper;
  * @author Java-LM
  */
 @Repository
-public class DetalleCarritoMyBatisRepositorioImpl implements CarritoRepositorio{
-    
+public class DetalleCarritoMyBatisRepositorioImpl implements DetalleCarritoRepositorio{
+
     private DetalleCarritoMapper detalleCarritoMapper;
-    
+
     @Autowired
     public DetalleCarritoMyBatisRepositorioImpl(SqlSession session) {
         detalleCarritoMapper = session.getMapper(DetalleCarritoMapper.class);
     }
-    
+
     @Override
-    public List<Carrito> buscarPorUsuario(Long idUsuario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public DetalleCarrito buscar(Long id) {
+        return null;
     }
 
     @Override
-    public Carrito buscar(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<DetalleCarrito> obtenerTodos() {
+        return null;
     }
 
     @Override
-    public List<Carrito> obtenerTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void crear(DetalleCarrito object) {
+
     }
 
     @Override
-    public void crear(Carrito object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void actualizar(DetalleCarrito object) {
+
     }
 
     @Override
-    public void actualizar(Carrito object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void eliminar(DetalleCarrito object) {
 
-    @Override
-    public void eliminar(Carrito object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }    
+    }
 }
