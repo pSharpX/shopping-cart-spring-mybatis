@@ -51,8 +51,9 @@ public class ProductoMyBatisRepositorioImpl
     }
 
     @Override
-    public void crear(Producto object) {
+    public Producto crear(Producto object) {
         productoMapper.insertProducto(object);
+        return object;
     }
 
     @Override

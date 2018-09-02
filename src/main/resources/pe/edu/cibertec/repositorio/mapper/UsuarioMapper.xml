@@ -52,7 +52,7 @@
         delete from usuario where id = #{id}
     </delete>
 
-    <select id="selectUsuarioByName" resultMap="Usuario">
+    <select id="selectUsuarioByName" parameterType="String" resultType="pe.edu.cibertec.dominio.Usuario">
         select
             id,
             <include refid="columnasUsuario" />

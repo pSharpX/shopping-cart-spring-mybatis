@@ -21,8 +21,8 @@
     <mappers>
         <mapper resource="pe/edu/cibertec/repositorio/mapper/UsuarioMapper.xml"/>
         <mapper resource="pe/edu/cibertec/repositorio/mapper/ProductoMapper.xml"/>
+        <mapper resource="pe/edu/cibertec/repositorio/mapper/CarritoMapper.xml"/>
         <mapper class="pe.edu.cibertec.repositorio.mapper.CategoriaMapper" />
-        <mapper class="pe.edu.cibertec.repositorio.mapper.CarritoMapper" />
         <mapper class="pe.edu.cibertec.repositorio.mapper.DetalleCarritoMapper" />
     </mappers>
 </configuration>

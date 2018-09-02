@@ -1,8 +1,11 @@
 package pe.edu.cibertec.converter.impl;
 
+import java.math.BigDecimal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import pe.edu.cibertec.converter.CarritoConverter;
 import pe.edu.cibertec.converter.DetalleCarritoConverter;
+import pe.edu.cibertec.converter.UsuarioConverter;
 import pe.edu.cibertec.dominio.Carrito;
 import pe.edu.cibertec.dto.CarritoDto;
 import pe.edu.cibertec.util.Converter;
@@ -15,6 +18,8 @@ public class CarritoDefaultConverterImpl implements CarritoConverter {
 
     @Autowired
     private DetalleCarritoConverter detalleCarritoConverter;
+    @Autowired
+    private UsuarioConverter usuarioConverter;
 
     @Override
     public CarritoDto map(Carrito object) {
@@ -33,6 +38,14 @@ public class CarritoDefaultConverterImpl implements CarritoConverter {
     @Override
     public Carrito map(CarritoDto object) {
         Carrito carritoCompra = new Carrito();
+        carritoCompra.setId(object.getId());
+        carritoCompra.setFechaCreacion(object.getFechaCreacion());
+        carritoCompra.setFechaCompra(object.getFechaCompra());
+        carritoCompra.setActivo(object.isActivo());
+        carritoCompra.setDireccionEnvio(object.getDireccionEnvio());
+        carritoCompra.setTotal(new BigDecimal(object.getTotal()));
+        //carritoCompra.setUsuario(usuarioConverter.map(object.get));
+//        carritoCompra.setDetalleCarritoList(detalleCarritoConverter.mapToDtoList(object.getDetalleCarrito()));
         return carritoCompra;
     }
 }

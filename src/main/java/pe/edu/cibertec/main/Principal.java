@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.List;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -17,6 +18,8 @@ import org.springframework.context.annotation.PropertySource;
 import pe.edu.cibertec.dominio.Producto;
 import pe.edu.cibertec.dominio.Usuario;
 import pe.edu.cibertec.dominio.busqueda.BusquedaProductoTop;
+import pe.edu.cibertec.dto.CarritoDto;
+import pe.edu.cibertec.dto.DetalleCarritoDto;
 import pe.edu.cibertec.dto.ProductoDto;
 import pe.edu.cibertec.dto.UsuarioDto;
 import pe.edu.cibertec.repositorio.CategoriaRepositorio;
@@ -25,6 +28,7 @@ import pe.edu.cibertec.repositorio.UsuarioRepositorio;
 import pe.edu.cibertec.servicio.CategoriaServicio;
 import pe.edu.cibertec.servicio.ProductoServicio;
 import pe.edu.cibertec.servicio.UsuarioServicio;
+import pe.edu.cibertec.servicio.facade.TiendaServiceFacade;
 
 @ComponentScan("pe.edu.cibertec")
 @PropertySource("classpath:database.properties")
@@ -59,7 +63,8 @@ public class Principal {
         UsuarioServicio usuarioServicio = ctx.getBean(UsuarioServicio.class);
         ProductoServicio productoServicio = ctx.getBean(ProductoServicio.class);
         CategoriaServicio categoriaServicio = ctx.getBean(CategoriaServicio.class);
-
+        
+        TiendaServiceFacade tiendaServiceFacade = ctx.getBean(TiendaServiceFacade.class);
 //            Usuario nuevoUsuario = new Usuario();
 //            nuevoUsuario.setNombre("María");
 //            nuevoUsuario.setApellido("Meza");
@@ -76,8 +81,11 @@ public class Principal {
 //                    "pe.edu.cibertec.repositorio.mapper.UsuarioMapper.updateUsuario",
 //                    usuario);
 //            System.out.println(usuario.getNombre() + " " + usuario.getApellido());
-        List<UsuarioDto> usuarios = usuarioServicio.obtenerTodos();
-        usuarios.forEach(System.out::println);
+        //ist<UsuarioDto> usuarios = usuarioServicio.obtenerTodos();
+        //usuarios.forEach(System.out::println);
+        
+        UsuarioDto usuarioDto = usuarioServicio.buscarPorNombre("Christian");
+        System.out.println(usuarioDto);
 
         System.out.println("-----------------------------------------------------------------");
         ProductoDto producto = productoServicio.buscar(1L);
@@ -103,6 +111,30 @@ public class Principal {
 //            System.out.println("Filas modificadas: " + indice);
 //            System.out.println("Queremos el índice! " + nuevo.getId());
         categoriaServicio.obtenerTodos().forEach(System.out::println);
+        CarritoDto carritoDto = new CarritoDto();
+        carritoDto.setActivo(true);
+        carritoDto.setDireccionEnvio("Calle Los Jardines #104");
+        carritoDto.setTotal(523.34);
+        carritoDto.setUsuario("Christian");
+        DetalleCarritoDto detalleCarritoDto1 = new DetalleCarritoDto();
+        detalleCarritoDto1.setCantidad(2);
+        detalleCarritoDto1.setDescuento(10.44);
+        detalleCarritoDto1.setPrecioUnitario(323.32);
+        detalleCarritoDto1.setProductoId(1);
+        detalleCarritoDto1.setPrecioVenta(340.32);
+        DetalleCarritoDto detalleCarritoDto2 = new DetalleCarritoDto();
+        detalleCarritoDto2.setCantidad(3);
+        detalleCarritoDto2.setDescuento(10.44);
+        detalleCarritoDto2.setPrecioUnitario(323.32);
+        detalleCarritoDto2.setProductoId(2);
+        detalleCarritoDto2.setPrecioVenta(340.32);
+//        carritoDto.setDetalleCarrito(Arrays.asList(detalleCarritoDto1, detalleCarritoDto2));
+        try {
+			tiendaServiceFacade.generarCarrito(carritoDto);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     private static final String RUTA_IMAGEN = "C:\\Luiggi\\reloj_cuarzo.jpg";

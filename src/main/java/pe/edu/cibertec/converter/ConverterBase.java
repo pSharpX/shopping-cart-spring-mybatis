@@ -19,9 +19,9 @@ public interface ConverterBase<X extends EntidadBase, Y extends DtoBase>  {
     Y map(X object);
     X map(Y object);
 
-    /*default List<X> mapToListOf(List<Y> collections){
+    default List<X> mapToDtoList(List<Y> collections){
         return collections.stream().map(this::map).collect(Collectors.toList());
-    }*/
+    }
     default List<Y> mapToListOf(List<X> collections){
         return collections.stream().map(this::map).collect(Collectors.toList());
     }

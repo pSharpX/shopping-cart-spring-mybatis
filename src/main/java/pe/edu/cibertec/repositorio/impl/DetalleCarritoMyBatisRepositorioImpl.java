@@ -40,8 +40,8 @@ public class DetalleCarritoMyBatisRepositorioImpl implements DetalleCarritoRepos
     }
 
     @Override
-    public void crear(DetalleCarrito object) {
-
+    public DetalleCarrito crear(DetalleCarrito object) {
+    	return null;
     }
 
     @Override

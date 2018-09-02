@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.edu.cibertec.repositorio.mapper.CarritoMapper">
+    <resultMap type="pe.edu.cibertec.dominio.Carrito" id="Carrito">
+        <id column="id" property="id"/>
+        <result column="total" property="total"/>
+        <result column="direccion_envio" property="direccionEnvio"/>
+        <result column="fecha_compra" property="fechaCompra"/>
+        <result column="fecha_creacion" property="fechaCreacion"/>
+        <result column="activo" property="activo"/>
+        <association property="usuario" javaType="pe.edu.cibertec.dominio.Usuario">
+		  <id property="id" column="id_usuario"/>
+		  <result property="nombre" column="nombre"/>
+		</association>
+    </resultMap>
+    
+    <sql id="columnasCarrito">
+        total, direccion_envio, id_usuario, activo, fecha_creacion, fecha_compra
+    </sql>
+
+    <select id="selectCarrito" resultMap="Carrito">
+        select
+            select c.id,
+            <include refid="columnasCarrito" />, 
+            u.nombre 
+		from carrito c
+		left join usuario u on (u.id = c.id_usuario);
+		where id = #{id}
+    </select>
+
+    <select id="selectAllCarrito" resultMap="Carrito">
+        select
+            select c.id,
+            <include refid="columnasCarrito" />,
+            u.nombre 
+		from carrito c
+		left join usuario u on (u.id = c.id_usuario);
+    </select>
+
+    <insert parameterType="pe.edu.cibertec.dominio.Carrito"
+            useGeneratedKeys="true"
+            keyColumn="id" keyProperty="id"
+            id="insertCarrito">
+        insert into carrito (<include refid="columnasCarrito" />)
+		values (#{total}, #{direccionEnvio}, #{usuario.id}, true, now(), now())
+    </insert>
+
+    <delete parameterType="long"
+            id="deleteCarrito">
+        delete from carrito where id = #{id}
+    </delete>
+</mapper>

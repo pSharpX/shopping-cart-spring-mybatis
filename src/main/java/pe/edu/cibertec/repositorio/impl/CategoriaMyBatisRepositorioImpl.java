@@ -38,8 +38,9 @@ public class CategoriaMyBatisRepositorioImpl implements CategoriaRepositorio{
     }
 
     @Override
-    public void crear(Categoria object) {
+    public Categoria crear(Categoria object) {
         categoriaMapper.insertCategoria(object);
+        return object;
     }
 
     @Override

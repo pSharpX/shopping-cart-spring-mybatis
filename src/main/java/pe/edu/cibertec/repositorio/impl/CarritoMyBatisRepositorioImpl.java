@@ -34,17 +34,18 @@ public class CarritoMyBatisRepositorioImpl implements CarritoRepositorio{
 
     @Override
     public Carrito buscar(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    	return this.carritoMapper.selectCarrito(id);
     }
 
     @Override
     public List<Carrito> obtenerTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    	return this.carritoMapper.selectAllCarrito();
     }
 
     @Override
-    public void crear(Carrito object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Carrito crear(Carrito object) {
+    	this.carritoMapper.insertCarrito(object);
+    	return object;
     }
 
     @Override
@@ -54,6 +55,6 @@ public class CarritoMyBatisRepositorioImpl implements CarritoRepositorio{
 
     @Override
     public void eliminar(Carrito object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }   
+    	this.carritoMapper.deleteCarrito(object.getId());
+    }
 }

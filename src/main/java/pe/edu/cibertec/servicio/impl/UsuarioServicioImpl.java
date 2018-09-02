@@ -46,4 +46,9 @@ public class UsuarioServicioImpl implements UsuarioServicio {
     public void eliminar(UsuarioDto object) {
         usuarioRepositorio.eliminar(usuarioConverter.map(object));
     }
+
+	@Override
+	public UsuarioDto buscarPorNombre(String nombre) {
+		return this.usuarioConverter.map(this.usuarioRepositorio.buscar(nombre));
+	}
 }

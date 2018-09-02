@@ -16,7 +16,7 @@ import java.util.List;
 public interface RepositorioBase<T extends EntidadBase> {
     T buscar(Long id);
     List<T> obtenerTodos();
-    void crear(T object);
+    T crear(T object);
     void actualizar(T object);
     void eliminar(T object);
     default void eliminar(Long id) {

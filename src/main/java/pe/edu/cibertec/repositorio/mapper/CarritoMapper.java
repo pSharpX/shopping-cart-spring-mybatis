@@ -5,10 +5,17 @@
  */
 package pe.edu.cibertec.repositorio.mapper;
 
+import java.util.List;
+
+import pe.edu.cibertec.dominio.Carrito;
+
 /**
  *
  * @author Java-LM
  */
 public interface CarritoMapper {
-    
+	Carrito selectCarrito(Long id);
+    List<Carrito> selectAllCarrito();
+    Long insertCarrito(Carrito carrito);
+    void deleteCarrito(Long id); 
 }

@@ -1,7 +1,9 @@
 package pe.edu.cibertec.converter.impl;
 
 import pe.edu.cibertec.converter.DetalleCarritoConverter;
+import pe.edu.cibertec.dominio.Carrito;
 import pe.edu.cibertec.dominio.DetalleCarrito;
+import pe.edu.cibertec.dominio.Producto;
 import pe.edu.cibertec.dto.DetalleCarritoDto;
 import pe.edu.cibertec.util.Converter;
 
@@ -28,6 +30,9 @@ public class DetalleCarritoDefaultConverterImpl implements DetalleCarritoConvert
     public DetalleCarrito map(DetalleCarritoDto object) {
         DetalleCarrito detalleCarrito = new DetalleCarrito();
         detalleCarrito.setId(object.getId());
+        Producto producto = new Producto();
+        producto.setId(object.getProductoId());
+        detalleCarrito.setProducto(producto);
         detalleCarrito.setCantidad(object.getCantidad());
         detalleCarrito.setPrecioUnitario(new BigDecimal(object.getPrecioUnitario()));
         return detalleCarrito;
